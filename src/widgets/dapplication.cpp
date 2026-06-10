@@ -179,7 +179,7 @@ bool DApplicationPrivate::setSingleInstanceBySemaphore(const QString &key)
     singleInstance = tryAcquireSystemSemaphore(&ss);
 
     if (singleInstance) {
-        QtConcurrent::run([this] {
+        (void)QtConcurrent::run([this] {
             QPointer<DApplication> that = q_func();
 
             while (ss.acquire() && singleInstance)
@@ -1535,22 +1535,6 @@ bool DApplication::notify(QObject *obj, QEvent *event)
             }
         }
     }
-
-// Qt 6.4 引入了 QPlatformTheme::ThemeHint::ButtonPressKeys
-// 可以通过主题插件 themeHint 返回一个按键列表，按钮应该响应列表中的按键
-// see https://github.com/linuxdeepin/qt5integration/pull/20
-#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
-    if (event->type() == QEvent::KeyPress && obj == focusWidget()) {
-        if (auto keyEvent = dynamic_cast<QKeyEvent *>(event)) {
-            if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
-                if (auto btn = qobject_cast<QAbstractButton *>(obj)) {
-                    Q_EMIT btn->clicked();
-                    return true;
-                }
-            }
-        }
-    }
-#endif
 
     if (event->type() == QEvent::ApplicationFontChange) {
         // ApplicationFontChange 调用 font() 是 ok 的，如果在 fontChanged 中调用在某些版本中会出现 deadlock

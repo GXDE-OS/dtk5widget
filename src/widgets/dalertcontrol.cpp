@@ -222,6 +222,7 @@ void DAlertControl::showAlertMessage(const QString &text, QWidget *follower, int
         d->frame->setFramRadius(DStyle::pixelMetric(d->target->style(), DStyle::PM_FrameRadius));
         d->frame->setBackgroundRole(QPalette::ToolTipBase);
         d->frame->setWidget(d->tooltip);
+        d->frame->setBlurBackgroundEnabled(true);
     }
 
     if (follower) {

@@ -21,6 +21,7 @@
 #include <QGuiApplication>
 #include <QAbstractItemView>
 #include <QPainterPath>
+#include <QLoggingCategory>
 
 #include <qmath.h>
 #include <private/qfixed_p.h>
@@ -38,6 +39,7 @@ DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
 DWIDGET_BEGIN_NAMESPACE
 
+Q_LOGGING_CATEGORY(dStyle, "dtk.widget.style")
 
 /*!
   \brief 该函数用于调整给定颜色.
@@ -169,6 +171,17 @@ void DStyle::setUncheckedItemIndicatorVisible(QWidget *widget, bool visible)
 void DStyle::setRedPointVisible(QObject *object, bool visible)
 {
     object->setProperty("_d_menu_item_redpoint", visible);
+}
+
+void DStyle::setLineEditIconMargin(QObject *object, int margin)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+    object->setProperty("_d_dtk_lineeditIconMargin", margin);
+#else
+    Q_UNUSED(object)
+    Q_UNUSED(margin)
+    qWarning(dStyle) << "DStyle::setLineEditIconMargin is only available since Qt 6.3 or in uos.";
+#endif
 }
 
 void DStyle::setShortcutUnderlineVisible(bool visible)
@@ -736,33 +749,12 @@ void drawTitleBarCloseButton(QPainter *pa, const QRectF &rect)
 
 void drawTitleBarNormalButton(QPainter *pa, const QRectF &rect)
 {
-    drawTitleBarIcon(pa, rect, QLatin1String("window_normal"));
+    drawTitleBarIcon(pa, rect, QLatin1String("window_restore"));
 }
 
 void drawTitleQuitFullButton(QPainter *pa, const QRectF &rect)
 {
-    const QPen pen = pa->pen();
-    pa->setPen(Qt::NoPen);
-    pa->drawRect(rect);
-    QRectF content_rect(0, 0, rect.width() / 5, rect.height() / 5);
-    content_rect.moveCenter(rect.center());
-    pa->setPen(pen);
-    pa->setRenderHint(QPainter::Antialiasing, pa->device()->devicePixelRatioF() > 1.0);
-    qreal x = content_rect.x();
-    qreal y = content_rect.y();
-    qreal w = content_rect.width();
-    qreal h = content_rect.height();
-    qreal mean = w / 11;
-
-    QRectF right(x + mean * 6, y, mean * 5, mean * 5);
-    pa->drawLine(QPointF(x + mean * 7, y), QPointF(x + mean * 7, y + mean * 5));
-    pa->drawLine(QPointF(x + mean * 7, y + mean * 5), QPointF(x + w, y + mean * 5));
-    pa->drawPoint(right.center());
-
-    QRectF left(x, y + mean * 6, mean * 5, mean * 5);
-    pa->drawLine(QPointF(x, y + mean * 7), QPointF(x + mean * 5, y + mean * 7));
-    pa->drawLine(QPointF(x + mean * 5, y + mean * 7), QPointF(x + mean * 5, y + h));
-    pa->drawPoint(left.center());
+    drawTitleBarIcon(pa, rect, QLatin1String("window_quit_full"));
 }
 
 void drawArrowUp(QPainter *pa, const QRectF &rect)
@@ -1112,7 +1104,11 @@ void DStyle::drawPrimitive(const QStyle *style, DStyle::PrimitiveElement pe, con
             p->setRenderHint(QPainter::Antialiasing);
 
             if (vopt->directions != Qt::Horizontal && vopt->directions != Qt::Vertical) {
-                p->drawRoundedRect(vopt->rect, frame_radius, frame_radius);
+                QRect vrect = vopt->rect;
+                if (vopt->state & QStyle::State_MouseOver) {
+                    vrect = vopt->rect.marginsRemoved(QMargins(0, 1, 0, 0));
+                }
+                p->drawRoundedRect(vrect, frame_radius, frame_radius);
                 break;
             }
 
@@ -1226,9 +1222,9 @@ void DStyle::drawPrimitive(const QStyle *style, DStyle::PrimitiveElement pe, con
                     QColor color;
                     DGuiApplicationHelper *guiAppHelp = DGuiApplicationHelper::instance();
                     if (guiAppHelp->themeType() == DGuiApplicationHelper::ColorType::DarkType)
-                        color = QColor(255, 255, 255, 255 * 0.05);
+                        color = QColor(255, 255, 255, 255 * 0.1);
                     else
-                        color = QColor(0, 0, 0, 255 * 0.05);
+                        color = QColor(0, 0, 0, 255 * 0.1);
                     pa.setBrush(QPalette::Window, color);
                 }
 
@@ -2138,7 +2134,7 @@ DStyle::StyleState DStyle::getState(const QStyleOption *option)
 
 static DStyle::StateFlags getFlags(const QStyleOption *option)
 {
-    DStyle::StateFlags flags{0};
+    DStyle::StateFlags flags{};
 
     if (option->state.testFlag(DStyle::State_On)) {
         flags |= DStyle::SS_CheckedFlag;
@@ -2215,7 +2211,7 @@ void DStyle::drawControl(QStyle::ControlElement ce, const QStyleOption *opt, QPa
  */
 int DStyle::pixelMetric(QStyle::PixelMetric m, const QStyleOption *opt, const QWidget *widget) const
 {
-    switch (m) {
+    switch (static_cast<uint32_t>(m)) {
     case PM_ButtonDefaultIndicator:
     case PM_ButtonShiftHorizontal:
     case PM_ButtonShiftVertical:
@@ -2276,6 +2272,22 @@ int DStyle::pixelMetric(QStyle::PixelMetric m, const QStyleOption *opt, const QW
         return 16;
     case PM_MenuButtonIndicator:
         return DSizeModeHelper::element(8, QCommonStyle::pixelMetric(m, opt, widget));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+    // since Qt 6.3 or applied patch Add-setting-thc-ICON-size-attribute-in-lineedit-to-the-style-plugin.patch( uos or deepin).
+    case PM_LineEditIconMargin: {
+        if (widget) {
+            const QVariant &margin_value = widget->property("_d_dtk_lineeditIconMargin");
+            if (margin_value.isValid()) {
+                bool ok = false;
+                int margin = margin_value.toInt(&ok);
+                if (ok && margin >= 0) {
+                    return margin;
+                }
+            }
+        }
+        Q_FALLTHROUGH();
+    }
+#endif
     case PM_FloatingButtonFrameMargin:
         return 3;
     default:

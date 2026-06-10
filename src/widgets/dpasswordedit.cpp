@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2015 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2015 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -14,6 +14,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QKeyEvent>
 
 
 DWIDGET_BEGIN_NAMESPACE
@@ -117,6 +118,26 @@ void DPasswordEdit::changeEvent(QEvent *event)
     return DLineEdit::changeEvent(event);
 }
 
+bool DPasswordEdit::eventFilter(QObject* watcher, QEvent* event)
+{
+    // TODO: Qt6 QLineEdit 已实现 Qt::ImEnabled 查询项，返回 isEnabled() && !isReadOnly()，
+    // 导致 Qt::WA_InputMethodEnabled 设置失效。已向 Qt 上游提交修复，
+    // 若上游合入，此处的输入法事件拦截即可回退。
+    // 上游提交: https://codereview.qt-project.org/c/qt/qtbase/+/741207
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (watcher == lineEdit()) {
+        switch (event->type()) {
+        case QEvent::InputMethod:
+        case QEvent::InputMethodQuery:
+            return true;
+        default:
+            break;
+        }
+    }
+#endif
+    return DLineEdit::eventFilter(watcher, event);
+}
+
 DPasswordEditPrivate::DPasswordEditPrivate(DPasswordEdit *q)
     : DLineEditPrivate(q)
 {
@@ -136,6 +157,7 @@ void DPasswordEditPrivate::init()
     togglePasswordVisibleButton->setIcon(DStyle::standardIcon(q->style(), DStyle::SP_ShowPassword));
     togglePasswordVisibleButton->setFixedWidth(defaultButtonWidth());
     togglePasswordVisibleButton->setIconSize(defaultIconSize());
+    togglePasswordVisibleButton->installEventFilter(q);
 
     list.append(togglePasswordVisibleButton);
     q->setRightWidgets(list);

@@ -70,7 +70,7 @@ public:
         setMessage(str);
         cancel->setAccessibleName("ChangeDDialogCancelButton");
         replace->setAccessibleName("ChangeDDialogReplaceButton");
-        insertButton(1, cancel);
+        insertButton(0, cancel);
         insertButton(1, replace);
         connect(replace, &DSuggestButton::clicked, [ = ] {  //替换
             auto value = shortcutMap.value(key);
@@ -270,7 +270,11 @@ QPair<QWidget *, QWidget *> createCheckboxOptionHandle(QObject *opt)
     rightWidget->setAccessibleName("OptionCheckbox");
     rightWidget->setChecked(option->value().toBool());
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    option->connect(rightWidget, &QCheckBox::checkStateChanged,
+#else
     option->connect(rightWidget, &QCheckBox::stateChanged,
+#endif
     option, [ = ](int status) {
         option->setValue(status == Qt::Checked);
     });

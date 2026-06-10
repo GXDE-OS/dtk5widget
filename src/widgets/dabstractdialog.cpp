@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2015 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2015 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -70,6 +70,7 @@ void DAbstractDialogPrivate::init(bool blurIfPossible)
 
         // fix wayland no titlebar
         //q->setWindowFlags(q->windowFlags() | Qt::FramelessWindowHint);
+        q->windowHandle()->setProperty("_d_enableSystemResize", false);
     }
 
     q->resize(DIALOG::DEFAULT_WIDTH, DIALOG::DEFAULT_HEIGHT);
@@ -249,7 +250,7 @@ void DAbstractDialog::moveToCenter()
 {
     D_DC(DAbstractDialog);
 
-    moveToCenterByRect(d->getParentGeometry());
+    QMetaObject::invokeMethod(this, "moveToCenterByRect", Qt::QueuedConnection, Q_ARG(QRect, d->getParentGeometry()));
 }
 
 /*!

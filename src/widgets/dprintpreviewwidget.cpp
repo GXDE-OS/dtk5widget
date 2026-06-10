@@ -51,7 +51,7 @@ static void saveImageToFile(int index, const QString &outPutFileName, const QStr
     QString tmpString = outPutFileName.left(outPutFileName.length() - suffix.length() - 1) + QString("(%1)").arg(QString::number(index + 1)) + stres;
 
     // 多线程保存文件修复大文件卡顿问题
-    QtConcurrent::run(QThreadPool::globalInstance(), [srcImage, tmpString, isJpegImage] {
+    (void)QtConcurrent::run(QThreadPool::globalInstance(), [srcImage, tmpString, isJpegImage] {
         const QFileInfo file(tmpString);
         const auto fileName = file.absolutePath() + "/" + truncateFileName(file.fileName());
         if (!srcImage.save(fileName, isJpegImage ? "JPEG" : "PNG")) {
@@ -114,7 +114,7 @@ void DPrintPreviewWidgetPrivate::populateScene()
     background->setBrush(Qt::white);
     background->setPen(Qt::NoPen);
 
-    for (auto *page : qAsConst(pages))
+    for (auto *page : std::as_const(pages))
         scene->removeItem(page);
     qDeleteAll(pages);
     pages.clear();
@@ -746,6 +746,10 @@ PrintOptions DPrintPreviewWidgetPrivate::printerOptions()
     options.append(QPair<QByteArray, QByteArray>(QStringLiteral("copies").toLocal8Bit(), QString::number(previewPrinter->copyCount()).toLocal8Bit()));
     options.append(QPair<QByteArray, QByteArray>(QStringLiteral("fit-to-page").toLocal8Bit(), QStringLiteral("true").toLocal8Bit()));
 
+    if (previewPrinter->collateCopies()) {
+        options.append(QPair<QByteArray, QByteArray>(QStringLiteral("collate").toLocal8Bit(),  QStringLiteral("true").toLocal8Bit()));
+    }
+
     if (pageRangeMode != DPrintPreviewWidget::AllPage) {
         QString pageRangeString;
         if (pageRangeMode == DPrintPreviewWidget::CurrentPage) {
@@ -1051,7 +1055,7 @@ QByteArray DPrintPreviewWidgetPrivate::foundColorModelByCups() const
                 for (int i = 0; i < colorModel->num_choices; ++i) {
                     ppd_choice_t *choice = colorModel->choices + i;
 
-                    if (QString(choice->choice).startsWith("gray", Qt::CaseInsensitive)) {
+                    if (QString(choice->choice).contains("gray", Qt::CaseInsensitive)) {
                         continue;
                     } else {
                         // 寻找ColorModel属性 获取到时返回支持的颜色
@@ -1152,13 +1156,13 @@ void DPrintPreviewWidgetPrivate::updateNumberUpContent()
 
     // 调整序号角标
     QVector<int> nVector;
-    for (auto &i : qAsConst(numberUpPrintData->previewPictures)) {
+    for (auto &i : std::as_const(numberUpPrintData->previewPictures)) {
         nVector.append(i.first);
     }
 
     // 调整序号坐标显示位置（纸张大小发生改变时）
     QVector<QPointF> paintPoints;
-    for (auto &p : qAsConst(numberUpPrintData->paintPoints)) {
+    for (auto &p : std::as_const(numberUpPrintData->paintPoints)) {
         paintPoints.append(p + QPointF(previewPrinter->pageLayout().paintRectPixels(previewPrinter->resolution()).width() * numberUpPrintData->scaleRatio, 0));
     }
 
@@ -1222,7 +1226,7 @@ QVector<int> DPrintPreviewWidgetPrivate::requestPages(int page)
   \a parent 父控件
  */
 DPrintPreviewWidget::DPrintPreviewWidget(DPrinter *printer, QWidget *parent)
-    : DFrame(*new DPrintPreviewWidgetPrivate(this))
+    : DFrame(*new DPrintPreviewWidgetPrivate(this), parent)
 {
     Q_D(DPrintPreviewWidget);
     d->previewPrinter = printer;

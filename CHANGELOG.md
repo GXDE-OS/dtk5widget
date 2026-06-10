@@ -1,3 +1,540 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [6.7.43] - 2026-06-04
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+- Chore: New release 6.7.38
+- Chore: New release 6.7.39
+- Chore: New release 6.7.40
+- Chore: New release 6.7.41
+- Chore: New release 6.7.42
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+- Use default license loading method
+- Prevent IME from activating when echo mode is Normal
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.42] - 2026-05-20
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+- Chore: New release 6.7.38
+- Chore: New release 6.7.39
+- Chore: New release 6.7.40
+- Chore: New release 6.7.41
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+- Use default license loading method
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.41] - 2026-05-08
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+- Chore: New release 6.7.38
+- Chore: New release 6.7.39
+- Chore: New release 6.7.40
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+- Use default license loading method
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.40] - 2026-04-23
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+- Chore: New release 6.7.38
+- Chore: New release 6.7.39
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+- Use default license loading method
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.39] - 2026-04-09
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+- Chore: New release 6.7.38
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+- Use default license loading method
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.38] - 2026-03-31
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+- Translate dtkwidget.ts in ru
+- Chore: New release 6.7.37
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+- Qt 6.11 compatibility for QCompleter include
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.37] - 2026-03-25
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+- Chore: New release 6.7.36
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+- Clear DComboBox popup highlight on mouse leave
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.36] - 2026-03-12
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+- Chore: New release 6.7.35
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.35] - 2026-03-05
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+- Chore: New release 6.7.34
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+- Fix window positioning with multi-screen and scaling
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.34] - 2026-02-27
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+- Chore: New release 6.7.33
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.33] - 2026-02-05
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#722)
+
+### Fixed
+
+- Adjust window decoration button background opacity
+- Tooltip does not show the latest text
+- Fix build with Qt 6.10.2
+- Correct include path in pkg-config file
+
+### Removed
+
+- Remove password visibility button key event handling
+
+## [6.7.32] - 2026-01-22
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#717)
+
+### Removed
+
+- Delete workflow call-synchronize-to-dtk6
+- Remove DTK version mapping for unified build
+
+## [6.7.31] - 2026-01-06
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#713)
+- Translate dtkwidget.ts in pl
+- Translate dtkwidget.ts in pl
+- Translate dtkwidget.ts in pl
+- Unify DTK5 and DTK6 build system
+
+### Fixed
+
+- Update CMake translation handling for Qt6 compatibility
+- Improve color mode configuration handling
+- Fix color mode combo signal connection
+
+## [5.7.30] - 2025-12-11
+
+### Added
+
+- Add Qt version guard for PM_LineEditIconMargin
+
+### Removed
+
+- Remove QGraphicsDropShadowEffect from DAlertControl
+
+## [5.7.28] - 2025-12-04
+
+## [5.7.27] - 2025-11-27
+
+### Added
+
+- Add reproducible build support
+- Add paste control to DLineEdit
+
+### Changed
+
+- Translate dtkwidget.ts in bn
+- Translate dtkwidget.ts in de
+- Translate dtkwidget.ts in hu
+- Translate dtkwidget.ts in ug
+- Translate dtkwidget.ts in pt_BR
+- Translate dtkwidget.ts in am_ET
+- Translate dtkwidget.ts in zh_TW
+- Translate dtkwidget.ts in ar
+- Translate dtkwidget.ts in sr
+- Translate dtkwidget.ts in pl
+- Translate dtkwidget.ts in fr
+- Translate dtkwidget.ts in sl
+- Translate dtkwidget.ts in ro
+- Translate dtkwidget.ts in lt
+- Translate dtkwidget.ts in ca
+- Translate dtkwidget.ts in hi_IN
+- Translate dtkwidget.ts in uk
+- Translate dtkwidget.ts in id
+- Translate dtkwidget.ts in pt
+- Translate dtkwidget.ts in hr
+- Translate dtkwidget.ts in ms
+- Translate dtkwidget.ts in nb
+- Translate dtkwidget.ts in sk
+- Translate dtkwidget.ts in ne
+- Translate dtkwidget.ts in ko
+- Translate dtkwidget.ts in az
+- Translate dtkwidget.ts in es
+- Translate dtkwidget.ts in cs
+- Translate dtkwidget.ts in ast
+- Translate dtkwidget.ts in bg
+- Translate dtkwidget.ts in lo
+- Translate dtkwidget.ts in sq
+- Translate dtkwidget.ts in fa
+- Translate dtkwidget.ts in da
+- Translate dtkwidget.ts in ja
+- Translate dtkwidget.ts in bo
+- Translate dtkwidget.ts in nl
+- Translate dtkwidget.ts in br
+- Translate dtkwidget.ts in zh_CN
+- Translate dtkwidget.ts in fi
+- Translate dtkwidget.ts in gl_ES
+- Translate dtkwidget.ts in tr
+- Translate dtkwidget.ts in eu
+- Translate dtkwidget.ts in zh_HK
+- Translate dtkwidget.ts in ru
+- Translate dtkwidget.ts in it
+- Translate dtkwidget.ts in sq
+- Reapply "fix: DApplication初始化过程中会覆盖原有事件掩码，导致丢失事件"
+
+### Fixed
+
+- Fix spelling errors
+
+## [5.7.26] - 2025-11-06
+
+### Added
+
+- Add support for custom line edit icon margin
+
+### Changed
+
+- Improve navigation widget styling
+- Chore: New release 5.7.25
+- Revert "fix: DApplication初始化过程中会覆盖原有事件掩码，导致丢失事件"
+- 新增一个含有内外边界的blurEffectWidget
+- 优化新增的DBlurEffectWithBorderWidget
+- 点击enter 和 return 按键可以切换密码明文显示状态
+- 打印预览中的按照页码范围进行打印，不进行重置处理
+- 滑动条默认支持鼠标点击后获得焦点，方便使用键盘进行微调
+- Revert "fix: 修复大多数按钮不响应enter事件"
+- 调整DTK滑动控件的焦点逻辑
+- 打印预览添加默认色彩配置
+
+### Fixed
+
+- Correct button order in settings dialog
+- Handle font change events in dialog
+- Adjust feature item widget height calculation
+- Improve dialog sizing and remove unused event filter
+- 修复控制中心一级菜单悬浮后离开有残影
+- 解决wayland机器部分对话框可以改变大小
+- 修复DArrowRectangle在屏幕边缘处移动时其箭头有残影
+- 修复wayland下DArrowRectangle控件在屏幕左边缘箭头位置跳变、右边缘箭头位置错误、箭头区域有模糊残影
+- 去除水印自定义文本字数限制
+- Wayland协议打印预览弹窗的最大化按钮点击无响应
+- 修复打印预览部分控件未适配紧凑模式
+- 修复打印预览对话框UI问题
+- 修复dtk图标颜色更新后，分屏菜单里的图标颜色没有跟随改变
+- 修复华为机型数据备份进度显示界面，表头右键菜单中“关闭”按钮为可点击状态
+- 修复窗口设置不允许关闭时,还可通过窗口右键菜单来关闭窗口
+- 修复x11拖动窗口，鼠标放在最大化按钮，无分屏菜单
+- 修复打印预览保存时文件名带上了原本的后缀名
+- 修复开源软件弹窗关闭按钮没有贴边
+- 修复分屏菜单投影的样式问题
+- 修复开源软件 链接字体 不跟随系统字体大小设置导致不协调
+- 修复窗口边界不能跟随窗口主题实时变化
+- 修复拖动终端Tab后再hover标题栏菜单，终端有概率直接崩溃
+- 修复模糊窗口最佳性能模式有内描边
+- 编辑框错误提示控件增加模糊和阴影
+- 修复ColorModel判断条件错误问题
+- 修复DPasswordEdit无focusChanged信号
+- DFloatingwidget 圆角异常
+- 修复加载颜色配置后没有触发信号导致颜色选项没有生效的问题
+- 修复打印PDF文件时逐份打印选项异常
+- 修复任务栏完全不透明时，点击企业微信，任务栏日志中有大量报错
+- 适配dde-watermark-plugin,添加对应头文件的简写文件
+- 修复按下方向键后，界面默认第一个slider滑块获取到焦点的问题
+- 更新翻译
+
+## [5.7.25] - 2025-10-30
+
+### Added
+
+- Add support for custom line edit icon margin
+
+### Changed
+
+- Improve navigation widget styling
+
+### Fixed
+
+- Correct button order in settings dialog
+- Handle font change events in dialog
+- Adjust feature item widget height calculation
+- Improve dialog sizing and remove unused event filter
+
+## [5.7.24] - 2025-10-16
+
+### Added
+
+- Support Qt 6.10
+
+### Changed
+
+- Translate dtkwidget.ts in sq
+
+### Fixed
+
+- Clear DCi icon state when setting other icon types
+
+## [5.7.23] - 2025-09-25
+
+### Changed
+
+- Enhance window effect support detection
+
+### Fixed
+
+- Fix search icon color inconsistency in DSearchEdit
+
+## [5.7.22] - 2025-09-04
+
+### Changed
+
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#681)
+
+### Fixed
+
+- Prevent potential tab index out of bounds crash
+
+## [5.7.21] - 2025-08-14
+
+### Changed
+
+- Revert "fix: prevent itemSpacing override in setBackgroundType"
+- Update translation configurations and translations
+- I18n: [dtkwidget] Updates for project Deepin Tool Kit (#677)
+
+### Fixed
+
+- Prevent background type from overriding custom item spacing
+- Update transifex configuration
+- Resolve various compilation warnings
+
+## [5.7.20] - 2025-07-31
+
+### Added
+
+- Add debian check workflow
+
+### Fixed
+
+- Prevent itemSpacing override in setBackgroundType
+- Resolve Qt6 compatibility issues
+
+## [5.7.19] - 2025-07-03
+
+### Added
+
+- Add security hardening flags and optimize build settings
+
+## [5.7.18] - 2025-06-27
+
+### Fixed
+
+- Make version optional in release workflow and update spec file
+
+## [5.7.17] - 2025-06-19
+
+### Changed
+
+- Support VERSION file
+- Add auto release workflow
+- Update window control icons and drawing logic
+- Update .syncexclude
+
 <a name="2.0.14"></a>
 ## 2.0.14 (2019-05-23)
 
