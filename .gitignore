@@ -30,10 +30,10 @@ build
 .cache
 # cmake files
 asan*
-archlinux/source.tar.gz
-archlinux/src
-archlinux/pkg
-archlinux/*.pkg.tar.zst
+arch/source.tar.gz
+arch/src
+arch/pkg
+arch/*.pkg.tar.zst
 include/dtkwidget/global/dtkwidget_config.h
 DtkWidgetConfig.cmake
 qt_lib_dtkwidget.pri

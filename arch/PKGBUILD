@@ -1,0 +1,41 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+pkgname=dtkwidget-git
+pkgver=6.7.43
+pkgrel=1
+pkgdesc='Deepin graphical user interface library'
+arch=('x86_64' 'aarch64')
+url="https://github.com/GXDE-OS/dtk5widget"
+license=('LGPL-3.0-or-later')
+depends=('dtkcore-git' 'dtkgui-git' 'dtkcommon-git' 'qt5-base' 'qt5-svg' 'qt5-x11extras'
+         'gsettings-qt5' 'libxcb' 'xcb-util' 'startup-notification' 'libx11' 'libxext' 'libxi')
+makedepends=('git' 'cmake' 'ninja' 'qt5-tools')
+provides=("dtkwidget=$pkgver")
+conflicts=('dtkwidget')
+groups=('deepin-git')
+source=()
+sha512sums=()
+
+# 直接使用 PKGBUILD 所在的 git 仓库作为源码 ・ Build from the git checkout this PKGBUILD lives in.
+_srcroot() {
+  git -C "$startdir" rev-parse --show-toplevel
+}
+
+build() {
+  cmake -B build -S "$(_srcroot)" -GNinja \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DCMAKE_INSTALL_LIBEXECDIR=lib \
+    -DMKSPECS_INSTALL_DIR=lib/qt/mkspecs/modules \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_TESTING=OFF \
+    -DBUILD_PLUGINS=OFF \
+    -DBUILD_DOCS=OFF \
+    -DDTK_STATIC_TRANSLATION=YES \
+    -DDTK5=ON
+  ninja -C build
+}
+
+package() {
+  DESTDIR="$pkgdir" ninja -C build install
+}
