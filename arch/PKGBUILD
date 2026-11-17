@@ -1,16 +1,17 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-pkgname=dtkwidget-git
+pkgname=gxde-dtkwidget
 pkgver=6.7.43
 pkgrel=1
 pkgdesc='Deepin graphical user interface library'
 arch=('x86_64' 'aarch64')
 url="https://github.com/GXDE-OS/dtk5widget"
 license=('LGPL-3.0-or-later')
-depends=('dtkcore-git' 'dtkgui-git' 'dtkcommon-git' 'qt5-base' 'qt5-svg' 'qt5-x11extras'
+depends=('gxde-dtkcore' 'gxde-dtkgui' 'gxde-dtkcommon' 'qt5-base' 'qt5-svg' 'qt5-x11extras'
          'gsettings-qt5' 'libxcb' 'xcb-util' 'startup-notification' 'libx11' 'libxext' 'libxi')
 makedepends=('git' 'cmake' 'ninja' 'qt5-tools')
-provides=("dtkwidget=$pkgver")
-conflicts=('dtkwidget')
+provides=("dtkwidget=$pkgver" "dtkwidget-git=$pkgver")
+conflicts=('dtkwidget' 'dtkwidget-git')
+replaces=('dtkwidget-git')
 groups=('deepin-git')
 source=()
 sha512sums=()
